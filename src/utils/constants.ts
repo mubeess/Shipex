@@ -9,4 +9,6 @@ export const colors = {
   inputBg: '#F4F2F8',
   iconColor: '#58536E',
   primaryLight: '#D9E6FD',
+  borderColor: '#000',
+  inputBgColor: '#F4F2F8',
 };
