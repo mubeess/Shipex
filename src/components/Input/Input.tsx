@@ -1,4 +1,10 @@
-import React, {useRef, useState, forwardRef, useImperativeHandle} from 'react';
+import React, {
+  useRef,
+  useState,
+  forwardRef,
+  useImperativeHandle,
+  useEffect,
+} from 'react';
 import {TextInput, TouchableOpacity} from 'react-native';
 import Animated, {
   useSharedValue,
@@ -11,11 +17,13 @@ import Animated, {
 import {AuthInputProps} from '../types';
 import {colors} from '@shipex/utils/constants';
 import {InputStyles} from './input.styles';
+import Text from '../Text/Text';
 
 const Input = forwardRef<TextInput, AuthInputProps>(
   ({label = '', value, error = '', ...props}, ref) => {
     const [isFocused, setIsFocused] = useState(false);
     const labelPosition = useSharedValue(value ? 0 : 15);
+
     const inputRef = useRef<TextInput>(null);
 
     useImperativeHandle(ref, () => ({
@@ -55,32 +63,29 @@ const Input = forwardRef<TextInput, AuthInputProps>(
         borderColor,
       };
     });
+
     return (
-      <Animated.View
-        style={[
-          InputStyles.container,
-          {
-            borderColor: error ? 'red' : 'transparent',
-          },
-          animatedBorderStyle,
-        ]}>
-        <TouchableOpacity
-          onPress={() => inputRef.current?.focus()}
-          activeOpacity={1}
-          style={InputStyles.inputContainer}>
-          <Animated.Text style={[InputStyles.label, animatedLabelStyle]}>
-            {label}
-          </Animated.Text>
-          <TextInput
-            {...props}
-            ref={inputRef}
-            onFocus={handleInputFocus}
-            onBlur={handleInputBlur}
-            style={InputStyles.input}
-            value={value}
-          />
-        </TouchableOpacity>
-      </Animated.View>
+      <>
+        <Animated.View style={[InputStyles.container, animatedBorderStyle]}>
+          <TouchableOpacity
+            onPress={() => inputRef.current?.focus()}
+            activeOpacity={1}
+            style={InputStyles.inputContainer}>
+            <Animated.Text style={[InputStyles.label, animatedLabelStyle]}>
+              {label}
+            </Animated.Text>
+            <TextInput
+              {...props}
+              ref={inputRef}
+              onFocus={handleInputFocus}
+              onBlur={handleInputBlur}
+              style={InputStyles.input}
+              value={value}
+            />
+          </TouchableOpacity>
+        </Animated.View>
+        <Text style={InputStyles.error}>{error}</Text>
+      </>
     );
   },
 );

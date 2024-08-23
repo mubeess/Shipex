@@ -7,11 +7,14 @@ import {ChevronLeftIcon} from '@shipex/assets/Svg/Index';
 import {colors} from '@shipex/utils/constants';
 import {LoginModalStyles} from '../styles/loginModal.styles';
 import {ModalLoginProps} from '../types';
+import useLoginValidation from '../hooks/useLoginValidation';
 
 export default function LoginModal({
   closeBottomSheet,
   bottomSheetRef,
 }: ModalLoginProps) {
+  const {pwdError, usrError, handleChange, handleSubmit, pwd, usr, loading} =
+    useLoginValidation();
   return (
     <BottomSheet
       handleIndicatorStyle={{display: 'none'}}
@@ -37,15 +40,29 @@ export default function LoginModal({
                 Please enter Your Login Details Below To Proceed
               </Text>
 
-              <Input style={LoginModalStyles.input} label="Username/Email" />
+              <Input
+                value={usr}
+                error={usrError}
+                onChangeText={handleChange('usr')}
+                style={LoginModalStyles.input}
+                label="Username/Email"
+              />
 
               <Input
-                secureEntry={true}
+                value={pwd}
+                error={pwdError}
+                onChangeText={handleChange('pwd')}
+                secureTextEntry={true}
                 style={LoginModalStyles.input}
                 label="Password"
               />
 
-              <Button style={LoginModalStyles.button} label="Login" />
+              <Button
+                isLoading={loading}
+                onPress={handleSubmit}
+                style={LoginModalStyles.button}
+                label="Login"
+              />
             </View>
           </ScrollView>
         </View>
