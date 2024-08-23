@@ -1,7 +1,9 @@
 import {useFormik} from 'formik';
-import Toast from 'react-native-toast-message';
 import {loginValidationSchema} from '../schema/LoginValidationSchema';
+
+import {useLogin} from '@shipex/hooks/useLogin';
 const useLoginValidation = () => {
+  const {login, loading} = useLogin();
   const initialValues = {
     usr: '',
     pwd: '',
@@ -11,10 +13,12 @@ const useLoginValidation = () => {
     validationSchema: loginValidationSchema,
     onSubmit: async values => {
       const {usr, pwd} = values;
+      await login(usr, pwd);
     },
   });
   const {handleChange, handleSubmit, values, errors} = formik;
   const {usr, pwd} = values;
+
   return {
     handleChange,
     handleSubmit,
@@ -22,6 +26,7 @@ const useLoginValidation = () => {
     pwd,
     usrError: formik.touched.usr && errors.usr ? errors.usr : '',
     pwdError: formik.touched.pwd && errors.pwd ? errors.pwd : '',
+    loading,
   };
 };
 

@@ -13,7 +13,7 @@ export default function LoginModal({
   closeBottomSheet,
   bottomSheetRef,
 }: ModalLoginProps) {
-  const {pwdError, usrError, handleChange, handleSubmit, pwd, usr} =
+  const {pwdError, usrError, handleChange, handleSubmit, pwd, usr, loading} =
     useLoginValidation();
   return (
     <BottomSheet
@@ -58,6 +58,7 @@ export default function LoginModal({
               />
 
               <Button
+                isLoading={loading}
                 onPress={handleSubmit}
                 style={LoginModalStyles.button}
                 label="Login"
