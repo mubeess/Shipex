@@ -28,4 +28,7 @@ export const InputStyles = StyleSheet.create({
     paddingLeft: 5,
     color: colors.primary,
   },
+  error: {
+    color: 'red',
+  },
 });

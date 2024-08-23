@@ -11,7 +11,7 @@ import {LoginStyles} from './styles/login.styles';
 function Login() {
   const bottomSheetRef = useRef<BottomSheet>(null);
 
-  const openModal = () => {
+  const openBottomSheet = () => {
     bottomSheetRef.current?.snapToIndex(0);
   };
   const closeBottomSheet = () => {
@@ -28,7 +28,7 @@ function Login() {
         label="Login"
         backgroundColor={colors.white}
         fontColor={colors.primary}
-        onPress={openModal}
+        onPress={openBottomSheet}
         style={LoginStyles.button}
       />
       <LoginModal
