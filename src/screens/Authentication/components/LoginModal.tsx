@@ -24,11 +24,12 @@ export default function LoginModal({
       index={-1}
       ref={bottomSheetRef}>
       <BottomSheetView style={LoginModalStyles.contentContainer}>
-        <View style={LoginModalStyles.layer}>
+        <View testID="login-bottom-sheet" style={LoginModalStyles.layer}>
           <ScrollView style={LoginModalStyles.scrollView}>
             <View style={LoginModalStyles.content}>
               <View style={LoginModalStyles.decoration} />
               <TouchableOpacity
+                testID="login-modal-close-button"
                 onPress={closeBottomSheet}
                 style={LoginModalStyles.closeModal}>
                 <ChevronLeftIcon color={colors.primary} />
@@ -58,6 +59,7 @@ export default function LoginModal({
               />
 
               <Button
+                testId="main-login"
                 disabled={!usr || !pwd}
                 isLoading={loading}
                 onPress={handleSubmit}

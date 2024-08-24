@@ -29,7 +29,7 @@ export default function FilterModal({
       ref={bottomSheetRef}>
       <StatusBar backgroundColor="transparent" translucent />
       <BottomSheetView style={LoginModalStyles.contentContainer}>
-        <View style={FilterModalStyles.content}>
+        <View testID="login-bottom-sheet" style={FilterModalStyles.content}>
           <View style={FilterModalStyles.decoration} />
           <View style={FilterModalStyles.actionButtons}>
             <TouchableOpacity onPress={closeBottomSheet}>

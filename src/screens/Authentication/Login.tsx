@@ -1,5 +1,5 @@
-import {Image, StatusBar} from 'react-native';
 import React, {useRef} from 'react';
+import {Image, StatusBar} from 'react-native';
 import BottomSheet from '@gorhom/bottom-sheet';
 import Animated, {FadeIn, FadeOut} from 'react-native-reanimated';
 import {LogoImage} from '@shipex/assets/Images';
@@ -23,8 +23,14 @@ function Login() {
       exiting={FadeOut.duration(500)}
       style={LoginStyles.conntainer}>
       <StatusBar animated backgroundColor={colors.primary} />
-      <Image resizeMode="contain" source={LogoImage} style={LoginStyles.logo} />
+      <Image
+        testID="login-logo"
+        resizeMode="contain"
+        source={LogoImage}
+        style={LoginStyles.logo}
+      />
       <Button
+        testId="login-button"
         label="Login"
         backgroundColor={colors.white}
         fontColor={colors.primary}
@@ -32,6 +38,7 @@ function Login() {
         style={LoginStyles.button}
       />
       <LoginModal
+        testID="login-bottom-sheet"
         bottomSheetRef={bottomSheetRef}
         closeBottomSheet={closeBottomSheet}
       />

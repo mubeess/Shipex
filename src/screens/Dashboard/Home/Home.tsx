@@ -92,7 +92,7 @@ export default function Home() {
         </View>
       </View>
       {isLoading && (
-        <View style={HomeStyles.loading}>
+        <View testID="loading-indicator" style={HomeStyles.loading}>
           <ActivityIndicator color={colors.primary} />
         </View>
       )}

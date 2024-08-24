@@ -5,7 +5,11 @@
     "paths": {
       "@shipex/*": ["src/*"]
     },
-    "types": ["jest", "react-native", "node"]
+    "types": ["jest", "node"],
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "jsx": "react"
     
   }
 }

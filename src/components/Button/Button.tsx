@@ -20,6 +20,7 @@ function Button({
   disabled = false,
   backgroundColor = colors.primary,
   fontColor = colors.white,
+  testId,
   ...props
 }: ButtonProps) {
   const {width} = Dimensions.get('window');
@@ -46,6 +47,7 @@ function Button({
   }, [isLoading]);
   return (
     <TouchableOpacity
+      testID={testId}
       disabled={disabled}
       activeOpacity={0.7}
       onPress={onPress}

@@ -45,6 +45,7 @@ const AnimaatedSplashScreen = ({onAnimationEnd}: SplashScreenType) => {
 
   return (
     <Animated.View
+      testID="splash-screen"
       {...container}
       style={[container.style, animatedContainerStyle]}>
       <StatusBar animated backgroundColor={colors.white} />
