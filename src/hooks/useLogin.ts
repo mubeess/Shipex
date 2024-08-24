@@ -1,7 +1,8 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import {loginFetcher} from '@shipex/api/client';
-import {handleError} from '@shipex/utils';
 import {useState} from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {loginFetcher} from '@shipex/api/auth/authApi';
+
+import {handleError} from '@shipex/utils';
 
 export const useLogin = () => {
   const [loading, setLoading] = useState(false);

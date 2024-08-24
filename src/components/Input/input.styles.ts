@@ -31,4 +31,10 @@ export const InputStyles = StyleSheet.create({
   error: {
     color: 'red',
   },
+  icon: {
+    width: 40,
+    backgroundColor: 'transparent',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });

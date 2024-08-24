@@ -1,11 +1,5 @@
-import React, {
-  useRef,
-  useState,
-  forwardRef,
-  useImperativeHandle,
-  useEffect,
-} from 'react';
-import {TextInput, TouchableOpacity} from 'react-native';
+import React, {useRef, useState, forwardRef, useImperativeHandle} from 'react';
+import {TextInput, TouchableOpacity, View} from 'react-native';
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -14,13 +8,13 @@ import Animated, {
   interpolateColor,
 } from 'react-native-reanimated';
 
-import {AuthInputProps} from '../types';
+import {InputProps} from '../types';
 import {colors} from '@shipex/utils/constants';
 import {InputStyles} from './input.styles';
 import Text from '../Text/Text';
 
-const Input = forwardRef<TextInput, AuthInputProps>(
-  ({label = '', value, error = '', ...props}, ref) => {
+const Input = forwardRef<TextInput, InputProps>(
+  ({label = '', value, error = '', icon, ...props}, ref) => {
     const [isFocused, setIsFocused] = useState(false);
     const labelPosition = useSharedValue(value ? 0 : 15);
 
@@ -67,6 +61,7 @@ const Input = forwardRef<TextInput, AuthInputProps>(
     return (
       <>
         <Animated.View style={[InputStyles.container, animatedBorderStyle]}>
+          {icon && <View style={InputStyles.icon}>{icon}</View>}
           <TouchableOpacity
             onPress={() => inputRef.current?.focus()}
             activeOpacity={1}
@@ -84,7 +79,7 @@ const Input = forwardRef<TextInput, AuthInputProps>(
             />
           </TouchableOpacity>
         </Animated.View>
-        <Text style={InputStyles.error}>{error}</Text>
+        {error && <Text style={InputStyles.error}>{error}</Text>}
       </>
     );
   },
