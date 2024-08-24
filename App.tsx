@@ -1,17 +1,18 @@
 import React, {useState} from 'react';
 
 import AppNavigation from '@shipex/navigation/AppNavigation';
-import AnimaatedSplashScreen from '@shipex/screens/SplashScreen/AnimatedSplashScreen';
+
 import {BottomSheetModalProvider} from '@gorhom/bottom-sheet';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import Toast from 'react-native-toast-message';
+import AnimatedSplashScreen from '@shipex/screens/SplashScreen/AnimatedSplashScreen';
 
 export default function App() {
   const [visible, setVisible] = useState(true);
   return (
     <>
       {visible ? (
-        <AnimaatedSplashScreen
+        <AnimatedSplashScreen
           onAnimationEnd={() => {
             setVisible(false);
           }}
