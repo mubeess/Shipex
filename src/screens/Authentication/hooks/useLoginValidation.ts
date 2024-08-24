@@ -2,8 +2,12 @@ import {useFormik} from 'formik';
 import {loginValidationSchema} from '../schema/LoginValidationSchema';
 
 import {useLogin} from '@shipex/hooks/useLogin';
+import {useNavigation} from '@react-navigation/native';
+import {LoginScreenNavigationProp} from '../types';
 const useLoginValidation = () => {
   const {login, loading} = useLogin();
+  const navigation = useNavigation<LoginScreenNavigationProp>();
+
   const initialValues = {
     usr: '',
     pwd: '',
@@ -13,7 +17,10 @@ const useLoginValidation = () => {
     validationSchema: loginValidationSchema,
     onSubmit: async values => {
       const {usr, pwd} = values;
-      await login(usr, pwd);
+      const response = await login(usr, pwd);
+      if (response?.full_name) {
+        navigation.navigate('Dashboard');
+      }
     },
   });
   const {handleChange, handleSubmit, values, errors} = formik;
