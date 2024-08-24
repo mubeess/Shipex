@@ -28,6 +28,7 @@ export const LoginModalStyles = StyleSheet.create({
     flexDirection: 'row',
     gap: 10,
     alignItems: 'center',
+    width: 100,
   },
   cancelText: {
     fontSize: 18,
@@ -41,8 +42,9 @@ export const LoginModalStyles = StyleSheet.create({
   },
   loginDescription: {
     color: colors.lightGray,
-    fontSize: 18,
+    fontSize: 16,
     textAlign: 'justify',
+    width: '90%',
   },
   input: {
     marginVertical: 10,
