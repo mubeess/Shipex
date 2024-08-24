@@ -16,7 +16,7 @@ export type ButtonProps = {
   style?: ViewStyle;
   disabled?: boolean;
   backgroundColor?: string;
-  pale?: boolean;
+  testId?: string;
   fontColor?: string;
 };
 

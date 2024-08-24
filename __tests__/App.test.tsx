@@ -2,16 +2,39 @@
  * @format
  */
 
-import 'react-native';
 import React from 'react';
+import {render, fireEvent} from '@testing-library/react-native';
 import App from '../App';
 
-// Note: import explicitly to use the types shipped with jest.
-import {it} from '@jest/globals';
+jest.mock('@shipex/navigation/AppNavigation', () => 'AppNavigation');
+jest.mock(
+  '@shipex/screens/SplashScreen/AnimatedSplashScreen',
+  () => 'AnimatedSplashScreen',
+);
+jest.mock('react-native-toast-message', () => ({
+  show: jest.fn(),
+  hide: jest.fn(),
+  __esModule: true,
+  default: jest.fn().mockImplementation(() => null),
+}));
 
-// Note: test renderer must be required after react-native.
-import renderer from 'react-test-renderer';
+describe('App', () => {
+  it('should show splash screen initially and then transition to AppNavigation', async () => {
+    const {getByTestId, queryByTestId} = render(<App />);
 
-it('renders correctly', () => {
-  renderer.create(<App />);
+    // Initially, the splash screen should be visible
+    setTimeout(() => {
+      expect(getByTestId('splash-screen')).toBeTruthy();
+
+      // Simulate the end of the splash screen animation
+      fireEvent(getByTestId('splash-screen'), 'animationEnd');
+
+      // Wait for the splash screen to disappear
+
+      expect(queryByTestId('splash-screen')).toBeNull();
+
+      // Check if AppNavigation is visible
+      expect(getByTestId('app-navigation')).toBeTruthy();
+    }, 6000);
+  });
 });
