@@ -10,7 +10,7 @@ import {colors} from '@shipex/utils/constants';
 import useSplashAnimation from './hooks/useSplashAnimation';
 import {SplashScreenType} from './types';
 
-const AnimaatedSplashScreen = ({onAnimationEnd}: SplashScreenType) => {
+const AnimatedSplashScreen = ({onAnimationEnd}: SplashScreenType) => {
   const {sharedValue, scaleYValue, startAnimation} = useSplashAnimation({
     onEnd: onAnimationEnd,
   });
@@ -58,4 +58,4 @@ const AnimaatedSplashScreen = ({onAnimationEnd}: SplashScreenType) => {
   );
 };
 
-export default AnimaatedSplashScreen;
+export default AnimatedSplashScreen;
