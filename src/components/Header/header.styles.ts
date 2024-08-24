@@ -1,5 +1,5 @@
 import {colors} from '@shipex/utils/constants';
-import {StyleSheet} from 'react-native';
+import {StatusBar, StyleSheet} from 'react-native';
 
 export const HeaderStyles = StyleSheet.create({
   container: {
@@ -9,6 +9,7 @@ export const HeaderStyles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    paddingTop: StatusBar.currentHeight,
   },
   avatar: {
     height: 40,

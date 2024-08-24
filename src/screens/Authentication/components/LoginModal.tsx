@@ -58,6 +58,7 @@ export default function LoginModal({
               />
 
               <Button
+                disabled={!usr || !pwd}
                 isLoading={loading}
                 onPress={handleSubmit}
                 style={LoginModalStyles.button}

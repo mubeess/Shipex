@@ -39,3 +39,21 @@ export type LoginResponse = {
   home_page: string;
   message: string;
 };
+export type ShipmentStatus = {
+  _assign: string | null;
+  _comments: string | null;
+  _liked_by: string | null;
+  _user_tags: string | null;
+  color: string;
+  creation: string;
+  docstatus: number;
+  idx: number;
+  modified: string;
+  modified_by: string;
+  name: string;
+  owner: string;
+  status: string;
+};
+export type ShipmentStatusResponse = {
+  message: ShipmentStatus[];
+};
