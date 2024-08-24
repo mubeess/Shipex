@@ -1,30 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Toast from 'react-native-toast-message';
-import {Cookies} from './types';
-
-export const extractCookies = async (response: any) => {
-  const cookiesHeader = response.headers['set-cookie'];
-  if (cookiesHeader) {
-    const cookies: {sid: string} = cookiesHeader
-      .join('; ')
-      .split('; ')
-      .reduce((acc: Cookies, cookie: string) => {
-        const [key, value] = cookie.split('=');
-
-        switch (key) {
-          case 'sid':
-            acc.sid = value;
-            break;
-        }
-        return acc;
-      }, {} as Cookies);
-
-    if (cookies.sid) {
-      await AsyncStorage.setItem('sid', cookies.sid);
-    }
-  }
-  return undefined;
-};
 
 export const handleError = (err: any, show = true) => {
   let {error: response, message: body, statusCode: status} = err;
@@ -54,4 +29,9 @@ export const handleError = (err: any, show = true) => {
     });
   }
   return {success: false, status, message: body};
+};
+
+export const getName = async () => {
+  const name = await AsyncStorage.getItem('full_name');
+  return name;
 };
