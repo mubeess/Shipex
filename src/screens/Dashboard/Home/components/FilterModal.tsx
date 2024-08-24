@@ -54,9 +54,7 @@ export default function FilterModal({
               shpmentStatus &&
               shpmentStatus.map(item => (
                 <TouchableOpacity
-                  onPress={() => {
-                    console.log(item);
-                  }}
+                  onPress={() => {}}
                   key={item.name}
                   style={FilterModalStyles.itemButton}>
                   <Text style={FilterModalStyles.text}>{item.name}</Text>
